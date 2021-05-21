@@ -1,0 +1,49 @@
+name: Test Placita
+
+on:
+  push:
+    branches-ignore:
+      - 'production'
+    paths-ignore:
+      - '**.md'
+      - 'Makefile'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Lint with Prettier and Eslint
+        run: |
+          yarn lint
+
+      - name: Docker Image Security Test with Snyk
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
+        with:
+          image: node:lts-alpine
+          args: --fail-on=upgradable
+
+      - name: Security Test with Snyk
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
+        with:
+          args: --fail-on=upgradable --sarif-file-output=snyk.sarif
+
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: snyk.sarif
