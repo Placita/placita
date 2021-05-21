@@ -1,0 +1,9 @@
+.git*
+node_modules/
+.eslint*
+.prettier*
+docker-compose*
+Dockerfile*
+Makefile
+*.mk
+*.md
