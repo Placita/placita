@@ -1,0 +1,75 @@
+name: Test, Build & Push to DockerHub
+
+on:
+  push:
+    branches:
+      - production
+    paths-ignore:
+      - '**.md'
+      - 'Makefile'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Lint with Prettier and Eslint
+        run: |
+          yarn lint
+
+      - name: Docker Image Security Test with Snyk
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
+        with:
+          image: node:lts-alpine
+          args: --fail-on=upgradable
+
+      - name: Security Test with Snyk
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
+        with:
+          args: --fail-on=upgradable --sarif-file-output=snyk.sarif
+
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: snyk.sarif
+
+  build-and-push-placita:
+    needs: test
+    name: Build and Push Placita
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          file: ./Dockerfile
+          tags: starlightromero/placita-node:latest
+          push: true
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
