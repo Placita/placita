@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
+// Connect to Mongoose database. Connection code in data/db.js
 connectDB()
 
 app.listen(3000)
