@@ -6,12 +6,12 @@ const handlebars = require('express-handlebars')
 // Require database configuration
 const connectDB = require('./data/db')
 
-const app = express()
-
 // Import route files
 const mainRoutes = require('./routes/main')
 const happeningsRoutes = require('./routes/happenings')
 const menuRoutes = require('./routes/menu')
+
+const app = express()
 
 // Initialize and configure handlebars
 app.set('view engine', 'hbs')
