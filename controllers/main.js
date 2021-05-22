@@ -1,3 +1,5 @@
 // Routes for all basic web pages that only need to return templates
 
-module.exports = 
+exports.getIndex = (req, res) => {
+  res.render('home')
+}
