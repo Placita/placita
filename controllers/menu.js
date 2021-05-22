@@ -1,4 +1,6 @@
 // CRUD routes for menu items
+const MenuItem = require('../models/menuItem')
+
 exports.getMenus = (req, res) => {
   res.render('menus/menus')
 }
