@@ -11,6 +11,7 @@ const app = express()
 // Import route files
 const mainRoutes = require('./routes/main')
 const happeningsRoutes = require('./routes/happenings')
+const menuRoutes = require('./routes/menu')
 
 // Initialize and configure handlebars
 app.set('view engine', 'hbs')
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use(mainRoutes)
 app.use('/happenings', happeningsRoutes)
+app.use('/menus', menuRoutes)
 
 // Connect to Mongoose database. Connection code in data/db.js
 connectDB()
