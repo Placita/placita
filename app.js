@@ -2,9 +2,11 @@ const path = require('path')
 const express = require('express')
 const favicon = require('serve-favicon')
 const handlebars = require('express-handlebars')
+// const bcrypt = require('bcrypt')
 const AdminBro = require('admin-bro')
 const AdminBroExpressjs = require('@admin-bro/express')
 const Admin = require('./models/admin')
+const MenuItem = require('./models/menuItem')
 
 // Require database configuration
 const connectDB = require('./data/db')
@@ -37,7 +39,36 @@ app.use(express.urlencoded({ extended: false }))
 
 // Pass all configuration settings to AdminBro
 const adminBro = new AdminBro({
-  resources: [Admin],
+  resources: [{
+    resource: Admin,
+    options: {
+      properties: {
+        encryptedPassword: {
+          isVisible: false
+        },
+        password: {
+          type: 'string',
+          isVisible: {
+            list: false, edit: true, filter: false, show: false
+          }
+        }
+      }
+      // actions: {
+      //   new: {
+      //     before: async (request) => {
+      //       if (request.payload.password) {
+      //         request.payload = {
+      //           ...request.payload,
+      //           encryptedPassword: await bcrypt.hash(request.payload.password, 10),
+      //           password: undefined
+      //         }
+      //       }
+      //       return request
+      //     }
+      //   }
+      // }
+    }
+  }, MenuItem],
   rootPath: '/admin'
 })
 

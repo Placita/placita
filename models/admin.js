@@ -8,7 +8,7 @@ const adminSchema = new Schema({
     type: String,
     required: true
   },
-  password: {
+  encryptedPassword: {
     type: String,
     required: true
   },
