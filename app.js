@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const favicon = require('serve-favicon')
 const handlebars = require('express-handlebars')
 
 const connectDB = require('./data/db')
@@ -15,6 +16,7 @@ app.engine('hbs', handlebars({
 }))
 
 app.use(express.static('public'))
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
