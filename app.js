@@ -2,10 +2,15 @@ const path = require('path')
 const express = require('express')
 const handlebars = require('express-handlebars')
 
+// Require database configuration
 const connectDB = require('./data/db')
 
 const app = express()
 
+// Import route files
+const mainRoutes = require('./routes/main')
+
+// Initialize and configure handlebars
 app.set('view engine', 'hbs')
 app.engine('hbs', handlebars({
   layoutsDir: path.join(__dirname, '/views/layouts/'),
@@ -14,13 +19,12 @@ app.engine('hbs', handlebars({
   defaultLayout: 'base'
 }))
 
+// Initialize public path, set express.json, urlencoded
 app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.get('/', (req, res) => {
-  res.render('home')
-})
+app.use(mainRoutes)
 
 // Connect to Mongoose database. Connection code in data/db.js
 connectDB()
