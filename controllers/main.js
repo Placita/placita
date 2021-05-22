@@ -3,3 +3,11 @@
 exports.getIndex = (req, res) => {
   res.render('home')
 }
+
+exports.getStory = (req, res) => {
+  res.render('story')
+}
+
+exports.getVisit = (req, res) => {
+  res.render('visit')
+}
