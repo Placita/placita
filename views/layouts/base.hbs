@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="/css/uikit.css" />
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit-icons.min.js"></script>
+    <title>Placita</title>
+  </head>
+  <body>
+    <nav class="uk-navbar-container" uk-navbar>
+
+      <div class="uk-navbar-left">
+        <ul class="uk-thumbnav">
+          <li class="uk-active"><a href="/"><img src="/images/logo.png" width="100" alt="Placita Logo"></a></li>
+        </ul>
+      </div>
+
+      <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li class="uk-active"><a href="">Home</a></li>
+          <li>
+            <a href="#">Menus</a>
+            <div class="uk-navbar-dropdown">
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li><a href="#">Brunch</a></li>
+                <li><a href="#">Dinner</a></li>
+                <li><a href="#">Drinks</a></li>
+                <li><a href="#">Dessert</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="uk-parent"><a href="">Story</a></li>
+          <li class="uk-parent"><a href="">Visit</a></li>
+          <li class="uk-parent"><a href="">Happenings</a></li>
+        </ul>
+      </div>
+
+    </nav>
+    
+    <div class="uk-container">
+      {{{body}}}
+    </div>
+
+  </body>
+</html>
