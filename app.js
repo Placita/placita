@@ -2,6 +2,11 @@ const path = require('path')
 const express = require('express')
 const favicon = require('serve-favicon')
 const handlebars = require('express-handlebars')
+// const bcrypt = require('bcrypt')
+const AdminBro = require('admin-bro')
+const AdminBroExpressjs = require('@admin-bro/express')
+const Admin = require('./models/admin')
+const MenuItem = require('./models/menuItem')
 
 // Require database configuration
 const connectDB = require('./data/db')
@@ -10,6 +15,10 @@ const connectDB = require('./data/db')
 const mainRoutes = require('./routes/main')
 const happeningsRoutes = require('./routes/happenings')
 const menuRoutes = require('./routes/menu')
+// const { router } = require('./routes/admin')
+
+// We have to tell AdminBro that we will manage mongoose resources with it
+AdminBro.registerAdapter(require('@admin-bro/mongoose'))
 
 const app = express()
 
@@ -28,13 +37,57 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+// Pass all configuration settings to AdminBro
+const adminBro = new AdminBro({
+  resources: [{
+    resource: Admin,
+    options: {
+      properties: {
+        encryptedPassword: {
+          isVisible: false
+        },
+        password: {
+          type: 'string',
+          isVisible: {
+            list: false, edit: true, filter: false, show: false
+          }
+        }
+      }
+      // actions: {
+      //   new: {
+      //     before: async (request) => {
+      //       if (request.payload.password) {
+      //         request.payload = {
+      //           ...request.payload,
+      //           encryptedPassword: await bcrypt.hash(request.payload.password, 10),
+      //           password: undefined
+      //         }
+      //       }
+      //       return request
+      //     }
+      //   }
+      // }
+    }
+  }, MenuItem],
+  rootPath: '/admin'
+})
+
+// Build and use a router which will handle all AdminBro routes
+const router = AdminBroExpressjs.buildRouter(adminBro)
+
 app.use(mainRoutes)
 app.use('/happenings', happeningsRoutes)
 app.use('/menus', menuRoutes)
+app.use(adminBro.options.rootPath, router)
 
-// Connect to Mongoose database. Connection code in data/db.js
-connectDB()
+// connectDB()
+const run = async () => {
+  // Connect to Mongoose database. Connection code in data/db.js
+  await connectDB()
+  await app.listen(3000)
+}
+// app.listen(3000)
 
-app.listen(3000)
+run()
 
 module.exports = app
