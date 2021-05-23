@@ -31,8 +31,8 @@ const menuItemSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'Admin',
-    required: false
+    required: true
   }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('MenuItem', menuItemSchema)
