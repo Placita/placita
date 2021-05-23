@@ -3880,13 +3880,13 @@ fieldset:disabled .btn {
 
 .dropdown-item:hover, .dropdown-item:focus {
   color: #171717;
-  background-color: #f7f7f9;
+  background-color: var(--bs-primary);
 }
 
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #1a1a1a;
+  background-color: var(--bs-secondary);
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -4108,25 +4108,25 @@ fieldset:disabled .btn {
   margin-top: -1px;
 }
 
-.nav-pills .nav-link {
+.nav-pills . {
   background: none;
   border: 0;
 }
 
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
+.nav-pills ..active,
+.nav-pills .show > . {
   color: #fff;
   background-color: #1a1a1a;
 }
 
-.nav-fill > .nav-link,
+.nav-fill > .,
 .nav-fill .nav-item {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   text-align: center;
 }
 
-.nav-justified > .nav-link,
+.nav-justified > .,
 .nav-justified .nav-item {
   -ms-flex-preferred-size: 0;
   flex-basis: 0;
@@ -4135,8 +4135,8 @@ fieldset:disabled .btn {
   text-align: center;
 }
 
-.nav-fill .nav-item .nav-link,
-.nav-justified .nav-item .nav-link {
+.nav-fill .nav-item .,
+.nav-justified .nav-item . {
   width: 100%;
 }
 
