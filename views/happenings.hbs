@@ -1,0 +1,16 @@
+<div class="row d-flex justify-content-center align-items-start">
+  <div class="col-lg-5 col-sm-6 bg-secondary p-5 mt-5">
+    <h1 class="text-center text-primary">Happenings</h1>
+    
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        {{#each happening}}
+        <h3>{{happening.name}}</h3>
+        <p>{{happening.description}}</p>
+        <small>{{menuItems.data}}</small>
+        {{/each}}
+      </div>
+    </div>
+    
+  </div>
+</div>
