@@ -8,6 +8,8 @@ const AdminBro = require('admin-bro')
 // Require database configuration
 const connectDB = require('./data/db')
 
+const handlebarsHelpers = require('./handlebars/helpers')
+
 // Import route files
 const mainRoutes = require('./routes/main')
 const happeningsRoutes = require('./routes/happenings')
@@ -23,10 +25,11 @@ app.set('view engine', 'hbs')
 app.engine(
   'hbs',
   handlebars({
+    extname: 'hbs',
+    defaultLayout: 'base',
     layoutsDir: path.join(__dirname, '/views/layouts/'),
     partialsDir: path.join(__dirname, '/views/partials/'),
-    extname: 'hbs',
-    defaultLayout: 'base'
+    helpers: handlebarsHelpers.helpers
   })
 )
 
