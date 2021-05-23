@@ -59,13 +59,49 @@ const adminBro = new AdminBro({
         }
       }
     },
-    MenuItem,
-    Happenings
+    {
+      resource: MenuItem,
+      options: {
+        properties: {
+          author: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: true,
+              show: true
+            }
+          },
+          createdAt: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
+          },
+          updatedAt: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
+          }
+        }
+      }
+    },
+    {
+      resource: Happenings,
+      options: {
+        properties: {
+
+        }
+      }
+    }
   ],
   rootPath: '/admin'
 })
 
-// Build and use a router which will handle all AdminBro routes
 // Build and use a router which will handle all AdminBro routes
 const adminRouter = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
   authenticate: async (email, password) => {
