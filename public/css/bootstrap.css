@@ -24,6 +24,7 @@
   --bs-font-sans-serif: "Bellefair", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-faded: rgba(255, 255, 255, 0.5);
 }
 
 *,
@@ -40,6 +41,17 @@
 
 .nounderline {
   text-decoration: none !important
+}
+
+.overlay {
+  color: var(--bs-white);
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  width: 80%;
+  z-index: 2;
 }
 
 body {
@@ -7785,6 +7797,10 @@ fieldset:disabled .btn {
 
 .bg-gradient {
   background-image: var(--bs-gradient) !important;
+}
+
+.bg-faded {
+  background-color: var(--bs-faded) !important;
 }
 
 .user-select-all {
