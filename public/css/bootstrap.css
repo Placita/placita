@@ -1,25 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Bellefair&display=swap');
 :root {
-  --bs-blue: #007bff;
-  --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1;
-  --bs-pink: #e83e8c;
-  --bs-red: #d9534f;
-  --bs-orange: #fd7e14;
-  --bs-yellow: #f0ad4e;
-  --bs-green: #4bbf73;
-  --bs-teal: #20c997;
-  --bs-cyan: #1f9bcf;
   --bs-white: #fff;
-  --bs-gray: #919aa1;
-  --bs-gray-dark: #615a44;
   --bs-primary: #e68b07;
   --bs-secondary: #a4580d;
+  --bs-muted: #523000;
   --bs-success: #4bbf73;
-  --bs-info: #523000;
   --bs-warning: #f0ad4e;
   --bs-danger: #d9534f;
-  --bs-light: #fff;
+  --bs-light: #fff3d4;
   --bs-dark: #615a44;
   --bs-font-sans-serif: "Bellefair", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -68,6 +56,12 @@ body {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 hr {
@@ -6848,7 +6842,7 @@ fieldset:disabled .btn {
 }
 
 .border-light {
-  border-color: #fff !important;
+  border-color: var(--bs-light) !important;
 }
 
 .border-dark {
@@ -7707,8 +7701,8 @@ fieldset:disabled .btn {
   color: #4bbf73 !important;
 }
 
-.text-info {
-  color: var(--bs-info) !important;
+.text-muted {
+  color: var(--bs-muted) !important;
 }
 
 .text-warning {
@@ -7720,7 +7714,7 @@ fieldset:disabled .btn {
 }
 
 .text-light {
-  color: #fff !important;
+  color: var(--bs-light) !important;
 }
 
 .text-dark {
@@ -7763,8 +7757,8 @@ fieldset:disabled .btn {
   background-color: var(--bs-success) !important;
 }
 
-.bg-info {
-  background-color: var(--bs-info) !important;
+.bg-muted {
+  background-color: var(--bs-muted) !important;
 }
 
 .bg-warning {
