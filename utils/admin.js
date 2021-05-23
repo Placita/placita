@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt')
 // Import resources to pass to our AdminBro instance
 const Admin = require('../models/admin')
 const MenuItem = require('../models/menuItem')
+const Happenings = require('../models/happening')
 
 // We have to tell AdminBro that we will manage mongoose resources with it
 AdminBro.registerAdapter(require('@admin-bro/mongoose'))
@@ -58,7 +59,8 @@ const adminBro = new AdminBro({
         }
       }
     },
-    MenuItem
+    MenuItem,
+    Happenings
   ],
   rootPath: '/admin'
 })
