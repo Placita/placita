@@ -13,10 +13,12 @@ const menuItemSchema = new Schema({
     enum: ['APPETIZERS', 'SALADS', 'TACOS', 'ENTREE', 'SIDES'],
     required: false
   },
-  description: [{
-    type: String,
-    required: true
-  }],
+  description: [
+    {
+      type: String,
+      required: true
+    }
+  ],
   menu: {
     type: String,
     enum: ['BRUNCH', 'DINNER', 'DESSERT', 'DRINKS'],

@@ -11,43 +11,55 @@ AdminBro.registerAdapter(require('@admin-bro/mongoose'))
 
 // Pass all configuration settings to AdminBro
 const adminBro = new AdminBro({
-  resources: [{
-    resource: Admin,
-    options: {
-      properties: {
-        encryptedPassword: {
-          isVisible: false
-        },
-        password: {
-          type: 'string',
-          isVisible: {
-            list: false, edit: true, filter: false, show: false
-          }
-        }
-      },
-      actions: {
-        new: {
-          isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin',
-          before: async (request) => {
-            if (request.payload.password) {
-              request.payload = {
-                ...request.payload,
-                encryptedPassword: await bcrypt.hash(request.payload.password, 10),
-                password: undefined
-              }
+  resources: [
+    {
+      resource: Admin,
+      options: {
+        properties: {
+          encryptedPassword: {
+            isVisible: false
+          },
+          password: {
+            type: 'string',
+            isVisible: {
+              list: false,
+              edit: true,
+              filter: false,
+              show: false
             }
-            return request
           }
         },
-        edit: {
-          isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin'
-        },
-        delete: {
-          isAccessible: ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin'
+        actions: {
+          new: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin',
+            before: async (request) => {
+              if (request.payload.password) {
+                request.payload = {
+                  ...request.payload,
+                  encryptedPassword: await bcrypt.hash(
+                    request.payload.password,
+                    10
+                  ),
+                  password: undefined
+                }
+              }
+              return request
+            }
+          },
+          edit: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          },
+          delete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          }
         }
       }
-    }
-  }, MenuItem],
+    },
+    MenuItem
+  ],
   rootPath: '/admin'
 })
 

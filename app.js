@@ -2,7 +2,6 @@ const path = require('path')
 const express = require('express')
 const favicon = require('serve-favicon')
 const handlebars = require('express-handlebars')
-const bcrypt = require('bcrypt')
 const { adminBro, adminRouter } = require('./utils/admin')
 const AdminBro = require('admin-bro')
 
@@ -21,12 +20,15 @@ const app = express()
 
 // Initialize and configure handlebars
 app.set('view engine', 'hbs')
-app.engine('hbs', handlebars({
-  layoutsDir: path.join(__dirname, '/views/layouts/'),
-  partialsDir: path.join(__dirname, '/views/partials/'),
-  extname: 'hbs',
-  defaultLayout: 'base'
-}))
+app.engine(
+  'hbs',
+  handlebars({
+    layoutsDir: path.join(__dirname, '/views/layouts/'),
+    partialsDir: path.join(__dirname, '/views/partials/'),
+    extname: 'hbs',
+    defaultLayout: 'base'
+  })
+)
 
 // Initialize public path, set express.json, urlencoded
 app.use(express.static('public'))
