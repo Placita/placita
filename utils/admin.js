@@ -62,8 +62,26 @@ const adminBro = new AdminBro({
         }
       }
     },
-    MenuItem,
-    Happenings
+    {
+      resource: MenuItem,
+      options: {
+        properties: {
+          _id: {
+            isVisible: false
+          }
+        }
+      }
+    },
+    {
+      resource: Happenings,
+      options: {
+        properties: {
+          _id: {
+            isVisible: false
+          }
+        }
+      }
+    }
   ],
   rootPath: '/admin'
 })
