@@ -58,6 +58,10 @@ const adminBro = new AdminBro({
           delete: {
             isAccessible: ({ currentAdmin }) =>
               currentAdmin && currentAdmin.role === 'admin'
+          },
+          bulkDelete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
           }
         }
       }
@@ -69,6 +73,22 @@ const adminBro = new AdminBro({
           _id: {
             isVisible: false
           }
+        },
+        actions: {
+          new: {
+            isAccessible: true
+          },
+          edit: {
+            isAccessible: true
+          },
+          delete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          },
+          bulkDelete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          }
         }
       }
     },
@@ -78,6 +98,22 @@ const adminBro = new AdminBro({
         properties: {
           _id: {
             isVisible: false
+          }
+        },
+        actions: {
+          new: {
+            isAccessible: true
+          },
+          edit: {
+            isAccessible: true
+          },
+          delete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          },
+          bulkDelete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
           }
         }
       }
