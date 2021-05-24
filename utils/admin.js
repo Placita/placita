@@ -28,6 +28,9 @@ const adminBro = new AdminBro({
               filter: false,
               show: false
             }
+          },
+          _id: {
+            isVisible: false
           }
         },
         actions: {
