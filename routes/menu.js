@@ -5,8 +5,6 @@ const menuController = require('../controllers/menu')
 
 const router = express.Router()
 
-router.get('/', menuController.getMenus)
-
 router.get('/brunch', menuController.getBrunchMenu)
 
 router.get('/dinner', menuController.getDinnerMenu)
