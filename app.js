@@ -1,4 +1,5 @@
 const path = require('path')
+const helmet = require('helmet')
 const express = require('express')
 const favicon = require('serve-favicon')
 const handlebars = require('express-handlebars')
@@ -33,6 +34,10 @@ app.engine(
   })
 )
 
+app.use(helmet({
+  contentSecurityPolicy: false
+}))
+
 // Initialize public path, set express.json, urlencoded
 app.use(express.static('public'))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
@@ -51,7 +56,6 @@ const run = async () => {
   await connectDB()
   await app.listen(3000)
 }
-// app.listen(3000)
 
 run()
 
