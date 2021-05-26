@@ -38,6 +38,9 @@ const adminBro = new AdminBro({
               filter: false,
               show: false
             }
+          },
+          _id: {
+            isVisible: false
           }
         },
         actions: {
@@ -65,6 +68,10 @@ const adminBro = new AdminBro({
           delete: {
             isAccessible: ({ currentAdmin }) =>
               currentAdmin && currentAdmin.role === 'admin'
+          },
+          bulkDelete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
           }
         }
       }
@@ -77,6 +84,9 @@ const adminBro = new AdminBro({
           icon: 'Restaurant'
         },
         properties: {
+          _id: {
+            isVisible: false
+          },
           author: {
             isVisible: {
               list: true,
@@ -101,6 +111,22 @@ const adminBro = new AdminBro({
               show: true
             }
           }
+        },
+        actions: {
+          new: {
+            isAccessible: true
+          },
+          edit: {
+            isAccessible: true
+          },
+          delete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          },
+          bulkDelete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          }
         }
       }
     },
@@ -112,7 +138,25 @@ const adminBro = new AdminBro({
           icon: 'EventSchedule'
         },
         properties: {
-
+          _id: {
+            isVisible: false
+          }
+        },
+        actions: {
+          new: {
+            isAccessible: true
+          },
+          edit: {
+            isAccessible: true
+          },
+          delete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          },
+          bulkDelete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          }
         }
       }
     }
