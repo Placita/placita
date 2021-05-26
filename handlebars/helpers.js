@@ -1,6 +1,7 @@
 const register = (Handlebars) => {
   const helpers = {
-    formatDate: (date) => date.toLocaleDateString()
+    formatDate: (date) => date.toLocaleDateString(),
+    formatIngredients: (description) => description.toString().replace(/[,]/g, ' | ')
   }
 
   if (Handlebars && typeof Handlebars.registerHelper === 'function') {
