@@ -1,4 +1,5 @@
 const path = require('path')
+const helmet = require('helmet')
 const express = require('express')
 const favicon = require('serve-favicon')
 const handlebars = require('express-handlebars')
@@ -7,6 +8,8 @@ const AdminBro = require('admin-bro')
 
 // Require database configuration
 const connectDB = require('./data/db')
+
+const handlebarsHelpers = require('./handlebars/helpers')
 
 // Import route files
 const mainRoutes = require('./routes/main')
@@ -23,12 +26,17 @@ app.set('view engine', 'hbs')
 app.engine(
   'hbs',
   handlebars({
+    extname: 'hbs',
+    defaultLayout: 'base',
     layoutsDir: path.join(__dirname, '/views/layouts/'),
     partialsDir: path.join(__dirname, '/views/partials/'),
-    extname: 'hbs',
-    defaultLayout: 'base'
+    helpers: handlebarsHelpers.helpers
   })
 )
+
+app.use(helmet({
+  contentSecurityPolicy: false
+}))
 
 // Initialize public path, set express.json, urlencoded
 app.use(express.static('public'))
@@ -48,7 +56,6 @@ const run = async () => {
   await connectDB()
   await app.listen(3000)
 }
-// app.listen(3000)
 
 run()
 

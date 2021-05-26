@@ -5,17 +5,27 @@ const bcrypt = require('bcrypt')
 // Import resources to pass to our AdminBro instance
 const Admin = require('../models/admin')
 const MenuItem = require('../models/menuItem')
-const Happenings = require('../models/happening')
+const Happening = require('../models/happening')
 
 // We have to tell AdminBro that we will manage mongoose resources with it
 AdminBro.registerAdapter(require('@admin-bro/mongoose'))
 
 // Pass all configuration settings to AdminBro
 const adminBro = new AdminBro({
+  rootPath: '/admin',
+  branding: {
+    logo: '/images/logo-banner.png',
+    companyName: 'Placita',
+    softwareBrothers: false
+  },
   resources: [
     {
       resource: Admin,
       options: {
+        navigation: {
+          name: null,
+          icon: 'User'
+        },
         properties: {
           encryptedPassword: {
             isVisible: false
@@ -59,13 +69,59 @@ const adminBro = new AdminBro({
         }
       }
     },
-    MenuItem,
-    Happenings
+    {
+      resource: MenuItem,
+      options: {
+        navigation: {
+          name: null,
+          icon: 'Restaurant'
+        },
+        properties: {
+          author: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: true,
+              show: true
+            }
+          },
+          createdAt: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
+          },
+          updatedAt: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
+          }
+        }
+      }
+    },
+    {
+      resource: Happening,
+      options: {
+        navigation: {
+          name: null,
+          icon: 'EventSchedule'
+        },
+        properties: {
+
+        }
+      }
+    }
   ],
-  rootPath: '/admin'
+  dashboard: {
+    component: AdminBro.bundle('../components/dashboard.jsx')
+  }
 })
 
-// Build and use a router which will handle all AdminBro routes
 // Build and use a router which will handle all AdminBro routes
 const adminRouter = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
   authenticate: async (email, password) => {
