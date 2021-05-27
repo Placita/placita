@@ -87,7 +87,11 @@ const adminBro = new AdminBro({
           _id: {
             isVisible: false
           },
-          author: {
+          name: {
+            isTitle: true
+          },
+          updatedBy: {
+            isRequired: false,
             isVisible: {
               list: true,
               edit: false,
@@ -96,6 +100,7 @@ const adminBro = new AdminBro({
             }
           },
           createdAt: {
+            isRequired: false,
             isVisible: {
               list: true,
               edit: false,
@@ -104,6 +109,7 @@ const adminBro = new AdminBro({
             }
           },
           updatedAt: {
+            isRequired: false,
             isVisible: {
               list: true,
               edit: false,
@@ -113,11 +119,45 @@ const adminBro = new AdminBro({
           }
         },
         actions: {
+          // reorder: {
+          //   isAccessible: true,
+          //   type: 'resource',
+          //   icon: 'Shuffle',
+          //   handler: async (req, res, context) => {
+          //     console.log(req)
+          //     console.log(res)
+          //     console.log(context)
+          //   }
+          // },
+          moveUp: {
+            type: 'record',
+            icon: 'ArrowUp',
+            handler: async (req, res, data) => {
+              console.log(req)
+              console.log(res)
+              console.log(data)
+            }
+          },
+          moveDown: {
+            type: 'record',
+            icon: 'ArrowDown',
+            handler: async (req, res, data) => {
+
+            }
+          },
           new: {
-            isAccessible: true
+            isAccessible: true,
+            before: async (request) => {
+              request.payload.updatedBy = request.session.adminUser._id
+              return request
+            }
           },
           edit: {
-            isAccessible: true
+            isAccessible: true,
+            before: async (request) => {
+              request.payload.updatedBy = request.session.adminUser._id
+              return request
+            }
           },
           delete: {
             isAccessible: ({ currentAdmin }) =>
@@ -140,14 +180,52 @@ const adminBro = new AdminBro({
         properties: {
           _id: {
             isVisible: false
+          },
+          name: {
+            isTitle: true
+          },
+          updatedBy: {
+            isRequired: false,
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: true,
+              show: true
+            }
+          },
+          createdAt: {
+            isRequired: false,
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
+          },
+          updatedAt: {
+            isRequired: false,
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
           }
         },
         actions: {
           new: {
-            isAccessible: true
+            isAccessible: true,
+            before: async (request) => {
+              request.payload.updatedBy = request.session.adminUser._id
+              return request
+            }
           },
           edit: {
-            isAccessible: true
+            isAccessible: true,
+            before: async (request) => {
+              request.payload.updatedBy = request.session.adminUser._id
+              return request
+            }
           },
           delete: {
             isAccessible: ({ currentAdmin }) =>
