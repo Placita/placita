@@ -7725,6 +7725,10 @@ fieldset:disabled .btn {
   color: #fff !important;
 }
 
+.text-black {
+  color: #000 !important;
+}
+
 .text-body {
   color: #55595c !important;
 }
@@ -10781,11 +10785,6 @@ th {
   color: inherit;
 }
 
-.text-transition {
-  transition: 0.5s;
-}
-
 .text-transition:hover {
   font-size: 50px;
-  transition: 0.5s
 }
