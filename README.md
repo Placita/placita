@@ -40,6 +40,7 @@ To run the app you will need:
 The `.env` file is not pushed to GitHub. You'll need to create the file in the root of the `backend` directory. And within the `.env` file, you'll need:
 
 - MONGODB_URI
+- SECRET_KEY
 
 Additionally you'll need to create `secrets.mk`, a Makefile at the root of the project with the following vars:
 
