@@ -8,10 +8,15 @@ const menuItemSchema = new Schema({
     type: String,
     required: true
   },
+  menu: {
+    type: String,
+    enum: ['BRUNCH', 'DINNER', 'DESSERT', 'DRINKS'],
+    required: true
+  },
   category: {
     type: String,
     enum: ['APPETIZERS', 'SALADS', 'TACOS', 'ENTREE', 'SIDES'],
-    required: false
+    required: true
   },
   description: [
     {
@@ -19,16 +24,11 @@ const menuItemSchema = new Schema({
       required: true
     }
   ],
-  menu: {
-    type: String,
-    enum: ['BRUNCH', 'DINNER', 'DESSERT', 'DRINKS'],
-    required: true
-  },
   price: {
     type: Number,
     required: true
   },
-  author: {
+  updatedBy: {
     type: Schema.Types.ObjectId,
     ref: 'Admin',
     required: true
