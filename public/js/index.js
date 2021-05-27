@@ -3,9 +3,7 @@ const drink = document.getElementById('drink')
 const visit = document.getElementById('visit')
 
 eat.addEventListener('mouseenter', () => {
-  setTimeout(() => {
-    eat.innerHTML = 'Comer'
-  }, 215)
+  eat.innerHTML = 'Comer'
 })
 
 eat.addEventListener('mouseleave', () => {
@@ -13,9 +11,7 @@ eat.addEventListener('mouseleave', () => {
 })
 
 drink.addEventListener('mouseenter', () => {
-  setTimeout(() => {
-    drink.innerHTML = 'Tomar'
-  }, 215)
+  drink.innerHTML = 'Tomar'
 })
 
 drink.addEventListener('mouseleave', () => {
@@ -23,9 +19,7 @@ drink.addEventListener('mouseleave', () => {
 })
 
 visit.addEventListener('mouseenter', () => {
-  setTimeout(() => {
-    visit.innerHTML = 'Visitar'
-  }, 215)
+  visit.innerHTML = 'Visitar'
 })
 
 visit.addEventListener('mouseleave', () => {
