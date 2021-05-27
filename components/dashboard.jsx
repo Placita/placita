@@ -4,10 +4,8 @@ import {
   Box,
   H2,
   H5,
-  H4,
   Icon,
-  Text,
-  Button
+  Text
 } from '@admin-bro/design-system'
 
 const pageHeaderHeight = 284
