@@ -12,7 +12,7 @@ const adminSchema = new Schema({
     type: String,
     required: true
   },
-  role: { type: String, enum: ['admin', 'employee'], required: true }
+  role: { type: String, enum: ['admin', 'restrictedadmin'], required: true }
 })
 
 module.exports = mongoose.model('Admin', adminSchema)
