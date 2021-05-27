@@ -15,6 +15,9 @@ debug :
 reload:
 				docker-compose down && docker-compose -f docker-compose.dev.yml up
 
+hard-reload:
+				docker-compose down --remove-orphans && docker-compose -f docker-compose.dev.yml build --force-rm --no-cache && docker-compose -f docker-compose.dev.yml up
+
 test-security:
 				snyk config set api=$(snyk_auth_token) && snyk test
 
