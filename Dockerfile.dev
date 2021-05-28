@@ -1,6 +1,6 @@
 FROM node:lts-buster-slim
 
-LABEL decription="Development image for StockStalker backend."
+LABEL decription="Development image for Placita."
 
 WORKDIR /usr/src/app
 
