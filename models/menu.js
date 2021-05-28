@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const menuSchema = new Schema({
   name: {
     type: String,
-    enum: ['BRUNCH', 'DINNER', 'DESSERT', 'DRINKS']
+    enum: ['BRUNCH', 'DINNER', 'DESSERT', 'DRINKS'],
     required: true
   },
   category: {
@@ -16,10 +16,10 @@ const menuSchema = new Schema({
   items: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'MenuItems'
+      ref: 'MenuItem',
       required: false
     }
-  ],
+  ]
 }, { timestamps: true })
 
 module.exports = mongoose.model('Menu', menuSchema)

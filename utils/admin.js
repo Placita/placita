@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 
 // Import resources to pass to our AdminBro instance
 const Admin = require('../models/admin')
+const Menu = require('../models/menu')
 const MenuItem = require('../models/menuItem')
 const Happening = require('../models/happening')
 
@@ -118,6 +119,62 @@ const adminBro = new AdminBro({
           },
           edit: {
             isAccessible: true
+          },
+          delete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          },
+          bulkDelete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          }
+        }
+      }
+    },
+    {
+      resource: Menu,
+      options: {
+        navigation: {
+          name: null,
+          icon: 'Restaurant'
+        },
+        properties: {
+          _id: {
+            isVisible: false
+          },
+          author: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: true,
+              show: true
+            }
+          },
+          createdAt: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
+          },
+          updatedAt: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
+          }
+        },
+        actions: {
+          new: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          },
+          edit: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
           },
           delete: {
             isAccessible: ({ currentAdmin }) =>
