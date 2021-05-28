@@ -12,7 +12,7 @@ const happeningsSchema = new Schema({
     type: String,
     required: true
   },
-  author: {
+  updatedBy: {
     type: Schema.Types.ObjectId,
     ref: 'Admin',
     required: true

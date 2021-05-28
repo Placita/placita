@@ -7725,6 +7725,10 @@ fieldset:disabled .btn {
   color: #fff !important;
 }
 
+.text-black {
+  color: #000 !important;
+}
+
 .text-body {
   color: #55595c !important;
 }

@@ -8,6 +8,11 @@ const menuItemSchema = new Schema({
     type: String,
     required: true
   },
+  menu: {
+    type: String,
+    enum: ['BRUNCH', 'DINNER', 'DESSERT', 'DRINKS'],
+    required: true
+  },
   category: {
     type: String,
     required: true
@@ -22,7 +27,7 @@ const menuItemSchema = new Schema({
     type: Number,
     required: true
   },
-  author: {
+  updatedBy: {
     type: Schema.Types.ObjectId,
     ref: 'Admin',
     required: true
