@@ -3,6 +3,7 @@ node_modules/
 .eslint*
 .prettier*
 docker-compose*
+.dockerignore
 Dockerfile*
 Makefile
 *.mk

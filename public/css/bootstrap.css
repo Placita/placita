@@ -36,9 +36,9 @@
   position: absolute;
   text-align: center;
   top: 50%;
-  left: 10%;
-  right: 10%;
-  width: 80%;
+  left: 5%;
+  right: 5%;
+  width: 90%;
   z-index: 2;
 }
 
@@ -10783,8 +10783,4 @@ th {
 
 .card-title, .card-header {
   color: inherit;
-}
-
-.text-transition:hover {
-  font-size: 50px;
 }

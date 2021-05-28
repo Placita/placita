@@ -15,7 +15,6 @@ const menuItemSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ['APPETIZERS', 'SALADS', 'TACOS', 'ENTREE', 'SIDES'],
     required: true
   },
   description: [

@@ -4,11 +4,15 @@ const bcrypt = require('bcrypt')
 
 // Import resources to pass to our AdminBro instance
 const Admin = require('../models/admin')
+const Menu = require('../models/menu')
 const MenuItem = require('../models/menuItem')
 const Happening = require('../models/happening')
 
 // We have to tell AdminBro that we will manage mongoose resources with it
 AdminBro.registerAdapter(require('@admin-bro/mongoose'))
+
+// Declare const salt
+const salt = parseInt(process.env.SALT)
 
 // Pass all configuration settings to AdminBro
 const adminBro = new AdminBro({
@@ -53,7 +57,7 @@ const adminBro = new AdminBro({
                   ...request.payload,
                   encryptedPassword: await bcrypt.hash(
                     request.payload.password,
-                    10
+                    salt
                   ),
                   password: undefined
                 }
@@ -158,6 +162,62 @@ const adminBro = new AdminBro({
               request.payload.updatedBy = request.session.adminUser._id
               return request
             }
+          },
+          delete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          },
+          bulkDelete: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          }
+        }
+      }
+    },
+    {
+      resource: Menu,
+      options: {
+        navigation: {
+          name: null,
+          icon: 'Restaurant'
+        },
+        properties: {
+          _id: {
+            isVisible: false
+          },
+          author: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: true,
+              show: true
+            }
+          },
+          createdAt: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
+          },
+          updatedAt: {
+            isVisible: {
+              list: true,
+              edit: false,
+              filter: false,
+              show: true
+            }
+          }
+        },
+        actions: {
+          new: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
+          },
+          edit: {
+            isAccessible: ({ currentAdmin }) =>
+              currentAdmin && currentAdmin.role === 'admin'
           },
           delete: {
             isAccessible: ({ currentAdmin }) =>
