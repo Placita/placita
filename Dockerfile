@@ -13,7 +13,7 @@ RUN rm /usr/bin/chage && rm /sbin/unix_chkpwd && rm /usr/bin/chsh && rm /usr/bin
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm ci --production
 
 RUN groupadd -g 999 nonroot && useradd -r -u 999 -g nonroot nonroot
 
