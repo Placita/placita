@@ -11,6 +11,9 @@ const Happening = require('../models/happening')
 // We have to tell AdminBro that we will manage mongoose resources with it
 AdminBro.registerAdapter(require('@admin-bro/mongoose'))
 
+// Declare const salt
+const salt = parseInt(process.env.SALT)
+
 // Pass all configuration settings to AdminBro
 const adminBro = new AdminBro({
   rootPath: '/admin',
@@ -54,7 +57,7 @@ const adminBro = new AdminBro({
                   ...request.payload,
                   encryptedPassword: await bcrypt.hash(
                     request.payload.password,
-                    10
+                    salt
                   ),
                   password: undefined
                 }
