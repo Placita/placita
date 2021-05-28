@@ -37,10 +37,11 @@ To run the app you will need:
 - [Docker](https://docs.docker.com/get-docker/)
 - [docker-compse](https://docs.docker.com/compose/install/)
 
-The `.env` file is not pushed to GitHub. You'll need to create the file in the root of the `backend` directory. And within the `.env` file, you'll need:
+The `.env` file is not pushed to GitHub. You'll need to create the file in the root of the `placita` directory. And within the `.env` file, you'll need:
 
 - MONGODB_URI
 - SECRET_KEY
+- SALT
 
 Additionally you'll need to create `secrets.mk`, a Makefile at the root of the project with the following vars:
 
