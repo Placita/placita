@@ -1,10 +1,20 @@
+// Path enables us to use our dir path easily
 const path = require('path')
+// Helmet sets HTTP headers for security
 const helmet = require('helmet')
+// Express spins up our web server
 const express = require('express')
+// Favicon to serve favicon icon
 const favicon = require('serve-favicon')
+// Handlebars is our templating engine
 const handlebars = require('express-handlebars')
+// AdminBro and adminRouter expose our easily spun-up admin dashboard & auth
 const { adminBro, adminRouter } = require('./utils/admin')
 const AdminBro = require('admin-bro')
+// Express-session is required by csurf
+const session = require('express-session')
+// Csurf for CSRF protection
+const csrf = require('csurf')
 
 // Require database configuration
 const connectDB = require('./data/db')
@@ -34,9 +44,20 @@ app.engine(
   })
 )
 
+// Set helmet with our content security policy
 app.use(helmet({
   contentSecurityPolicy: false
 }))
+
+// Initialize our session manager with options
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: true
+}))
+
+// Initialize and use our csrf middleware
+app.use(csrf())
 
 // Initialize public path, set express.json, urlencoded
 app.use(express.static('public'))
