@@ -10,7 +10,7 @@ stop :
 				docker compose -f docker-compose.dev.yml down
 
 debug :
-				TAG=$$(date +%Y%m%d%H%M%S) docker compose -f docker-compose.dev.yml --verbose up
+				TAG=$$(date +%m%d%H%M%S) docker compose -f docker-compose.dev.yml --verbose up
 
 reload :
 				make stop
