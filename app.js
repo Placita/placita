@@ -14,7 +14,9 @@ const AdminBro = require('admin-bro')
 // Express-session is required by csurf
 const session = require('express-session')
 // Csurf for CSRF protection
-const csrf = require('csurf')
+// const csrf = require('csurf')
+// Require rate-limiting package for DDOS protection
+const rateLimit = require('express-rate-limit')
 
 // Require database configuration
 const connectDB = require('./data/db')
@@ -30,6 +32,14 @@ const menuRoutes = require('./routes/menu')
 AdminBro.registerAdapter(require('@admin-bro/mongoose'))
 
 const app = express()
+
+// Trust NGINX
+app.set('trust proxy', 1)
+// // Configure limiter:
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per window
+})
 
 // Initialize and configure handlebars
 app.set('view engine', 'hbs')
@@ -51,13 +61,14 @@ app.use(helmet({
 
 // Initialize our session manager with options
 app.use(session({
-  secret: process.env.SECRET_KEY,
-  resave: false,
-  saveUninitialized: true
+  secret: process.env.SECRET_KEY
 }))
 
+// Apply limiter to all requests
+app.use(limiter)
+
 // Initialize and use our csrf middleware
-app.use(csrf())
+// app.use(csrf())
 
 // Initialize public path, set express.json, urlencoded
 app.use(express.static('public'))
