@@ -1,9 +1,9 @@
 version: "3.9"
 services:
-  node:
+  placita:
     restart: always
-    container_name: placita-node
-    image: index.docker.io/starlightromero/placita-node
+    container_name: placita
+    image: index.docker.io/starlightromero/placita
     env_file:
       - .env
     ports:
