@@ -4,11 +4,11 @@ LABEL decription="Production image for Placita."
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY app/package*.json ./
 
-RUN npm ci
+RUN npm ci --production
 
-COPY . .
+COPY app/ ./
 
 FROM gcr.io/distroless/nodejs:14
 
