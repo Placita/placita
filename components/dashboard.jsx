@@ -42,6 +42,12 @@ const boxes = () => [
   {
     icon: 'Restaurant',
     title: 'Menu Management',
+    subtitle: 'Add, edit, and remove menus',
+    href: '/admin/resources/Menu'
+  },
+  {
+    icon: 'Restaurant',
+    title: 'Menu Item Management',
     subtitle: 'Add, edit, and remove menu items',
     href: '/admin/resources/MenuItem'
   },
@@ -50,6 +56,12 @@ const boxes = () => [
     title: 'Happenings Management',
     subtitle: 'Add, edit, and remove happenings',
     href: '/admin/resources/Happenings'
+  },
+  {
+    icon: 'Time',
+    title: 'Restaurant Hours Management',
+    subtitle: 'Add, edit, and remove restaurant hours',
+    href: '/admin/resources/Hours'
   }
 ]
 
