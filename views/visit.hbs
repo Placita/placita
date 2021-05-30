@@ -5,70 +5,28 @@
     
     <div class="row justify-content-center">      
       <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-6 col-sm-7">
-        
-        <div class="row justify-content-between">
-          <div class="col-4">
-            <p class="text-start text-dark">Mon</p>
+
+        {{#each hours}}
+          <div class="row justify-content-between">
+            <div class="col-4">
+              <p class="text-start text-dark">{{ this.day }}</p>
+            </div>
+            <div class="col-8">
+              <p class="text-end text-dark">
+                {{#if (and this.brunchOpen this.dinnerOpen)}}
+                  {{this.brunchOpen}}–{{this.brunchClose}} & {{this.dinnerOpen}}–{{this.dinnerClose}}
+                {{else if this.brunchOpen}}
+                  {{this.brunchOpen}}–{{this.brunchClose}}
+                {{else if this.dinnerOpen}}
+                  {{this.dinnerOpen}}–{{this.dinnerClose}}
+                {{else}}
+                  Closed
+                {{/if}}
+              </p>
+            </div>
           </div>
-          <div class="col-8">
-            <p class="text-end text-dark">Closed</p>
-          </div>
-        </div>
-        
-        <div class="row justify-content-between">
-          <div class="col-4">
-            <p class="text-start text-dark">Tues</p>
-          </div>
-          <div class="col-8">
-            <p class="text-end text-dark">5–10</p>
-          </div>
-        </div>
-        
-        <div class="row justify-content-between">
-          <div class="col-4">
-            <p class="text-start text-dark">Wed</p>
-          </div>
-          <div class="col-8">
-            <p class="text-end text-dark">5–10</p>
-          </div>
-        </div>
-        
-        <div class="row justify-content-between">
-          <div class="col-4">
-            <p class="text-start text-dark">Thur</p>
-          </div>
-          <div class="col-8">
-            <p class="text-end text-dark">5–10</p>
-          </div>
-        </div>
-        
-        <div class="row justify-content-between">
-          <div class="col-4">
-            <p class="text-start text-dark">Fri</p>
-          </div>
-          <div class="col-8">
-            <p class="text-end text-dark">5–10</p>
-          </div>
-        </div>
-        
-        <div class="row justify-content-between">
-          <div class="col-4">
-            <p class="text-start text-dark">Sat</p>
-          </div>
-          <div class="col-8">
-            <p class="text-end text-dark">5–10</p>
-          </div>
-        </div>
-        
-        <div class="row justify-content-between">
-          <div class="col-4">
-            <p class="text-start text-dark">Sun</p>
-          </div>
-          <div class="col-8">
-            <p class="text-end text-dark">11–3 & 5–10</p>
-          </div>
-        </div>
-        
+        {{/each}}
+
       </div>
     </div>
     
@@ -84,7 +42,7 @@
     <h1 class="text-center text-primary">Contact</h1>
     
     <p class="text-center text-dark">
-      <a class="text-reset nounderline" href="tel:951-405-8960">(951) 405-8960</a>
+      <a class="text-reset nounderline" href="tel:+19514058960">(951) 405-8960</a>
     </p>
   </div>
 </div>
