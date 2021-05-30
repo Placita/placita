@@ -22,11 +22,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci
+          cd app && npm ci && cd ..
 
       - name: Lint with Prettier and Eslint
         run: |
-          npm run lint
+          cd app && npm run lint && cd ..
 
       - name: Docker Image Security Test with Snyk
         uses: snyk/actions/docker@master
