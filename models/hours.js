@@ -1,12 +1,10 @@
-// Model for happenings
-const mongoose = require('mongoose')
-
-const Schema = mongoose.Schema
+// Model for hours
+const { Schema, model } = require('mongoose')
 
 const hoursSchema = new Schema({
   day: {
     type: String,
-    enum: ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'],
+    enum: ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'],
     required: true
   },
   brunchOpen: {
@@ -27,4 +25,4 @@ const hoursSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('Hours', hoursSchema)
+module.exports = model('Hours', hoursSchema)
