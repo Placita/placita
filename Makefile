@@ -25,7 +25,9 @@ test-image-security :
 				snyk container test node:lts-buster-slim --file=Dockerfile --fail-on=upgradable
 
 lint :
+				cd app
 				npm run lint
+				cd ..
 				
 publish-major :
 				echo "major"
