@@ -188,11 +188,10 @@ const adminBro = new AdminBro({
   },
   {
     resource: Hours,
-    // TODO: change icon
     options: {
       navigation: {
         name: null,
-        icon: 'Restaurant'
+        icon: 'Time'
       },
       properties: {
         _id: {

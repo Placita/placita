@@ -1,7 +1,5 @@
 // Model for Admins
-const mongoose = require('mongoose')
-
-const Schema = mongoose.Schema
+const { Schema, model } = require('mongoose')
 
 const adminSchema = new Schema({
   email: {
@@ -15,4 +13,4 @@ const adminSchema = new Schema({
   role: { type: String, enum: ['admin', 'restrictedadmin'], required: true }
 })
 
-module.exports = mongoose.model('Admin', adminSchema)
+module.exports = model('Admin', adminSchema)

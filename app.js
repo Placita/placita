@@ -27,6 +27,7 @@ const handlebarsHelpers = require('./handlebars/helpers')
 const mainRoutes = require('./routes/main')
 const happeningsRoutes = require('./routes/happenings')
 const menuRoutes = require('./routes/menu')
+const visitRoutes = require('./routes/visit')
 
 // We have to tell AdminBro that we will manage mongoose resources with it
 AdminBro.registerAdapter(require('@admin-bro/mongoose'))
@@ -75,6 +76,7 @@ app.use(express.static('public'))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 app.use(mainRoutes)
+app.use('/visit', visitRoutes)
 app.use('/happenings', happeningsRoutes)
 app.use('/menus', menuRoutes)
 app.use(adminBro.options.rootPath, adminRouter)

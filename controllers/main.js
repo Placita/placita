@@ -7,7 +7,3 @@ exports.getIndex = (req, res) => {
 exports.getStory = (req, res) => {
   res.render('story')
 }
-
-exports.getVisit = (req, res) => {
-  res.render('visit')
-}

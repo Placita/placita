@@ -7,8 +7,6 @@ const router = express.Router()
 
 router.get('/', mainController.getIndex)
 
-router.get('/visit', mainController.getVisit)
-
 router.get('/story', mainController.getStory)
 
 module.exports = router
