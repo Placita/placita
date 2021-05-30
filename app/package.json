@@ -8,8 +8,8 @@
   "scripts": {
     "start": "node app.js",
     "start-dev": "nodemon app.js",
-    "format": "prettier --write \"{utils,routes,models,middleware,controllers}/*.js\" && prettier --write ./app.js",
-    "lint-files": "eslint --fix \"{utils,routes,models,middleware,controllers}/*.js\" && eslint --fix ./app.js",
+    "format": "prettier --write \"app/*/*.js\" && prettier --write app/app.js",
+    "lint-files": "eslint --fix \"app/*/*.js\" && eslint --fix app/app.js",
     "lint": "npm run format && npm run lint-files"
   },
   "dependencies": {

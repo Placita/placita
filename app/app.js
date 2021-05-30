@@ -56,14 +56,18 @@ app.engine(
 )
 
 // Set helmet with our content security policy
-app.use(helmet({
-  contentSecurityPolicy: false
-}))
+app.use(
+  helmet({
+    contentSecurityPolicy: false
+  })
+)
 
 // Initialize our session manager with options
-app.use(session({
-  secret: process.env.SECRET_KEY
-}))
+app.use(
+  session({
+    secret: process.env.SECRET_KEY
+  })
+)
 
 // Apply limiter to all requests
 app.use(limiter)
