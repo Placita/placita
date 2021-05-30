@@ -8,6 +8,8 @@ services:
     container_name: placita
     volumes:
       - ./app:/usr/src/app
+      - ./package.json:/usr/src/app/package.json
+      - ./package-lock.json:/usr/src/app/package-lock.json
       - /usr/src/app/node_modules
     env_file:
       - .env

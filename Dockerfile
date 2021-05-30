@@ -4,7 +4,7 @@ LABEL decription="Production image for Placita."
 
 WORKDIR /usr/src/app
 
-COPY app/package*.json ./
+COPY package*.json ./
 
 RUN npm ci --production
 
