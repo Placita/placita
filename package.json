@@ -10,7 +10,7 @@
     "start-dev": "nodemon app.js",
     "format": "prettier --write \"{utils,routes,models,middleware,controllers}/*.js\" && prettier --write ./app.js",
     "lint-files": "eslint --fix \"{utils,routes,models,middleware,controllers}/*.js\" && eslint --fix ./app.js",
-    "lint": "yarn format && yarn lint-files"
+    "lint": "npm run format && npm run lint-files"
   },
   "dependencies": {
     "@admin-bro/express": "^3.1.0",
