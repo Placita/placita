@@ -1,7 +1,5 @@
 // Model for MenuItems
-const mongoose = require('mongoose')
-
-const Schema = mongoose.Schema
+const { Schema, model } = require('mongoose')
 
 const menuItemSchema = new Schema({
   name: {
@@ -34,4 +32,4 @@ const menuItemSchema = new Schema({
   }
 }, { timestamps: true })
 
-module.exports = mongoose.model('MenuItem', menuItemSchema)
+module.exports = model('MenuItem', menuItemSchema)
