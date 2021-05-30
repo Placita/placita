@@ -1,43 +1,53 @@
 -include secrets.mk
 
 build :
-				export DOCKER_CONTENT_TRUST=1 && docker compose -f docker-compose.dev.yml build --force-rm --no-cache
+				TAG=$$(date +%m%d%H%M%S) docker compose -f docker-compose.dev.yml build --force-rm
 
-start:
-				export DOCKER_CONTENT_TRUST=1 && docker compose -f docker-compose.dev.yml up
+start :
+				TAG=$$(date +%m%d%H%M%S) docker compose -f docker-compose.dev.yml up
 
 stop :
-				docker compose -f docker-compose.dev.yml down --remove-orphans
+				docker compose -f docker-compose.dev.yml down
 
 debug :
-				docker compose -f docker-compose.dev.yml --verbose up
+				TAG=$$(date +%m%d%H%M%S) docker compose -f docker-compose.dev.yml --verbose up
 
-reload:
-				docker compose -f docker-compose.dev.yml down && docker compose -f docker-compose.dev.yml up
+reload :
+				make stop
+				make start
 
-hard-reload:
-				docker compose -f docker-compose.dev.yml down --remove-orphans && docker compose -f docker-compose.dev.yml build --force-rm --no-cache && docker compose -f docker-compose.dev.yml up
+test-security :
+				snyk config set api=$(snyk_auth_token)
+				snyk test
 
-test-security:
-				snyk config set api=$(snyk_auth_token) && snyk test
+test-image-security :
+				snyk config set api=$(snyk_auth_token)
+				snyk container test node:lts-buster-slim --file=Dockerfile --fail-on=upgradable
 
-test-image-security:
-				snyk config set api=$(snyk_auth_token) && snyk container test node:lts-buster-slim --file=Dockerfile --fail-on=upgradable
-
-lint:
+lint :
 				npm run lint
+				
+publish-major :
+				echo "major"
+
+publish-minor :
+				echo "minor"
+
+publish-patch :
+				echo "patch"
 
 rm :
 				docker container prune -f
 
-rm-all:
-				docker stop $$(docker ps -aq) && docker rm $$(docker ps -aq)
+rm-all :
+				docker stop $$(docker ps -aq)
+				docker rm $$(docker ps -aq)
 
 rmi :
-				docker rmi placita_node
+				docker rmi placita_placita
 
-rmi-all:
+rmi-all :
 				docker rmi $$(docker images -q)
 	
-purge:
+purge :
 				docker system prune --volumes --all -f

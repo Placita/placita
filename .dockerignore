@@ -2,9 +2,10 @@
 node_modules/
 .eslint*
 .prettier*
-docker-compose*
 .dockerignore
 Dockerfile*
 Makefile
+*.yml
 *.mk
 *.md
+*.tf

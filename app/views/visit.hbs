@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-lg-5 col-md-6 col-sm-7 col-9 bg-light p-5 my-5">
+    
+    <h1 class="text-center text-primary">Hours</h1>
+    
+    <div class="row justify-content-center">      
+      <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-6 col-sm-7">
+
+        {{#each hours}}
+          <div class="row justify-content-between">
+            <div class="col-4">
+              <p class="text-start text-dark">{{ this.day }}</p>
+            </div>
+            <div class="col-8">
+              <p class="text-end text-dark">
+                {{#if (and this.brunchOpen this.dinnerOpen)}}
+                  {{this.brunchOpen}}–{{this.brunchClose}} & {{this.dinnerOpen}}–{{this.dinnerClose}}
+                {{else if this.brunchOpen}}
+                  {{this.brunchOpen}}–{{this.brunchClose}}
+                {{else if this.dinnerOpen}}
+                  {{this.dinnerOpen}}–{{this.dinnerClose}}
+                {{else}}
+                  Closed
+                {{/if}}
+              </p>
+            </div>
+          </div>
+        {{/each}}
+
+      </div>
+    </div>
+    
+    <h1 class="text-center text-primary">Location</h1>
+    
+    <p class="text-center text-dark">
+      <a class="text-reset nounderline" href="geo:33.976014,-117.350845">
+        1805 University Ave</br>
+        Riverside, CA 92507
+      </a>
+    </p>
+    
+    <h1 class="text-center text-primary">Contact</h1>
+    
+    <p class="text-center text-dark">
+      <a class="text-reset nounderline" href="tel:+19514058960">(951) 405-8960</a>
+    </p>
+  </div>
+</div>

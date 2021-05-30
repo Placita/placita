@@ -22,11 +22,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          yarn install
+          npm ci
 
       - name: Lint with Prettier and Eslint
         run: |
-          yarn lint
+          npm run lint
 
       - name: Docker Image Security Test with Snyk
         uses: snyk/actions/docker@master
@@ -69,7 +69,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           file: ./Dockerfile
-          tags: starlightromero/placita-node:latest
+          tags: starlightromero/placita-placita:latest
           push: true
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
