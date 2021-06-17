@@ -1,16 +1,19 @@
 -include secrets.mk
 
+compose = docker-compose -f
+dev = docker-compose.dev.yml
+
 build :
-				TAG=$$(date +%m%d%H%M%S) docker compose -f docker-compose.dev.yml build --force-rm
+				TAG=$$(date +%m%d%H%M%S) ${compose} ${dev} build --force-rm
 
 start :
-				TAG=$$(date +%m%d%H%M%S) docker compose -f docker-compose.dev.yml up
+				TAG=$$(date +%m%d%H%M%S) ${compose} ${dev} up
 
 stop :
-				docker compose -f docker-compose.dev.yml down
+				${compose} ${dev} down
 
 debug :
-				TAG=$$(date +%m%d%H%M%S) docker compose -f docker-compose.dev.yml --verbose up
+				TAG=$$(date +%m%d%H%M%S) ${compose} ${dev} --verbose up
 
 reload :
 				make stop
