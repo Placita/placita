@@ -10,7 +10,8 @@
     "start-dev": "nodemon app.js",
     "format": "prettier --write \"app/*/*.js\" && prettier --write app/app.js",
     "lint-files": "eslint --fix \"app/*/*.js\" && eslint --fix app/app.js",
-    "lint": "npm run format && npm run lint-files"
+    "lint": "npm run format && npm run lint-files",
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "@admin-bro/express": "^3.1.0",
@@ -39,6 +40,9 @@
     "mongoose": "^5.12.10",
     "nodemon": "^2.0.7",
     "prettier": "2.3.0",
-    "snyk": "^1.605.0"
+    "snyk": "^1.605.0",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-node-externals": "^3.0.0"
   }
 }
