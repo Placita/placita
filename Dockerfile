@@ -1,4 +1,4 @@
-FROM node:14.17-alpine as build
+FROM node:14.17-buster as build
 
 LABEL decription="Production image for Placita."
 
