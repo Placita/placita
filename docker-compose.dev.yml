@@ -7,16 +7,16 @@ services:
       dockerfile: Dockerfile.dev
     container_name: placita
     volumes:
-      - ./app/components:/usr/src/app/components
-      - ./app/controllers:/usr/src/app/controllers
-      - ./app/data:/usr/src/app/data
-      - ./app/handlebars:/usr/src/app/handlebars
-      - ./app/models:/usr/src/app/models
-      - ./app/public:/usr/src/app/public
-      - ./app/routes:/usr/src/app/routes
-      - ./app/utils:/usr/src/app/utils
-      - ./app/views:/usr/src/app/views
-      - ./app/app.js:/usr/src/app/app.js
+      - ./components:/usr/src/app/components
+      - ./controllers:/usr/src/app/controllers
+      - ./data:/usr/src/app/data
+      - ./handlebars:/usr/src/app/handlebars
+      - ./models:/usr/src/app/models
+      - ./public:/usr/src/app/public
+      - ./routes:/usr/src/app/routes
+      - ./utils:/usr/src/app/utils
+      - ./views:/usr/src/app/views
+      - ./app.js:/usr/src/app/app.hs
       - /usr/src/app/node_modules
     env_file:
       - .env

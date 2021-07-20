@@ -49,8 +49,8 @@ app.engine(
   handlebars({
     extname: 'hbs',
     defaultLayout: 'base',
-    layoutsDir: path.join(__dirname, '/views/layouts/'),
-    partialsDir: path.join(__dirname, '/views/partials/'),
+    layoutsDir: path.join(__dirname, 'views', 'layouts'),
+    partialsDir: path.join(__dirname, 'views', 'partials'),
     helpers: handlebarsHelpers.helpers
   })
 )
