@@ -30,4 +30,4 @@ HEALTHCHECK --interval=1m --timeout=5s --retries=2 \
 
 EXPOSE 3000
 
-CMD ["src/app.js"]
+CMD ["app.js"]
