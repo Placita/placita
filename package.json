@@ -8,8 +8,8 @@
   "scripts": {
     "start": "node app.js",
     "start-dev": "nodemon app.js",
-    "format": "prettier --write \"app/*/*.js\" && prettier --write app/app.js",
-    "lint-files": "eslint --fix \"app/*/*.js\" && eslint --fix app/app.js",
+    "format": "prettier --write \"src/*/*.js\" && prettier --write src/app.js",
+    "lint-files": "eslint --fix \"src/*/*.js\" && eslint --fix src/app.js",
     "lint": "npm run format && npm run lint-files",
     "build": "webpack --config webpack.config.js"
   },
