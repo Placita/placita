@@ -26,7 +26,7 @@ COPY --from=build /usr/src/app .
 # COPY --from=build /usr/src/app/build ./build
 
 HEALTHCHECK --interval=1m --timeout=5s --retries=2 \
-  CMD curl -f http://68.183.107.24 || exit 1
+  CMD curl -f http://143.198.154.85 || exit 1
 
 EXPOSE 3000
 
