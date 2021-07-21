@@ -79,10 +79,10 @@ app.use(limiter)
 app.use(express.static('public'))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
-app.use(mainRoutes)
 app.use('/visit', visitRoutes)
 app.use('/happenings', happeningsRoutes)
 app.use('/menus', menuRoutes)
+app.use(mainRoutes)
 app.use(adminBro.options.rootPath, adminRouter)
 
 app.use(express.json())
